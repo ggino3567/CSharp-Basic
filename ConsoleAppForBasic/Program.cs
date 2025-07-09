@@ -12,7 +12,7 @@
             // 像是JS中的Array => 查詢、存放一堆資料
             List<string> OrderList = ["Harry Potter", "Dark Night", "Slient Hill", "Resident Evil"];
 
-            // 看看Foreach在這長怎樣
+            // 看看foreach在這長怎樣
             foreach (var item in OrderList)
             {
                 Console.WriteLine($"foreach in {item}");
