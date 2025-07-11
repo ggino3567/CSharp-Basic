@@ -65,5 +65,15 @@ namespace ConsoleAppForBasic
             Console.WriteLine($"Div: {GetSum}");
         }
     }
+
+    public class Counter : ICalculator
+    {
+        public double Add(double a, double b)
+        {
+            return a + b;
+        }
+    }
+
+    
 }
 
