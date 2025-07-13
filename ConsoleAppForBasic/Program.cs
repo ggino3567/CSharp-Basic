@@ -81,9 +81,11 @@ namespace ConsoleAppForBasic
             //counter.PrintSum(2, 3); //void method
             //counter.PrintXToOne(3);
             //counter.PrintOneAddToAHandred();
-            int result = counter.SumFromOneToX(3);
-            int newResult = counter.SumFromOneToXX(3);
-            Console.WriteLine(newResult);
+            //int result = counter.SumFromOneToX(3);
+            //int newResult = counter.SumFromOneToXX(3);
+
+            int hanoiCounter = counter.HanoiTower(3, 'A', 'B', 'C'); //2^3-1 => hanoiCounter = 7
+            Console.WriteLine($"HanoiTower Run Time: {hanoiCounter}");
         }
     }
 
@@ -141,7 +143,7 @@ namespace ConsoleAppForBasic
         }
 
         //遞歸
-        public int SumFromOneToX(int x)
+        public int GetGaussian(int x)
         {
             if (x == 1)
             {
@@ -156,22 +158,51 @@ namespace ConsoleAppForBasic
                 //=> #N(2 - 1 = x = 1) = result = 1
                 //=> return 1
                 //接下來向上遞歸, 順序為: 
-                int result = x + SumFromOneToX(x - 1);
+                int result = x + GetGaussian(x - 1);
                 return result;
             }
         }
 
         //直接抓高斯的手來寫公式return求和
-        public int SumFromOneToXX(int x)
+        public int GetGaussianX(int x)
         {
+            //以防自己忘記:
+            //參數:100 => (1 + 100) * 100 / 2;
             return (1 + x) * x / 2;
         }
 
-        //0713河內塔挑戰
-        public int GetHeNeiTa(int x)
+        // HanoiTower 問題（河內塔）
+        // 最少搬動次數 F(n) = 2^n - 1
+        /*
+            三個步驟（以 A → C 為例）：
+            Step 1：將 n-1 個圓盤從 A 移到 B（透過 C）
+            Step 2：將最大的第 n 個盤從 A 移到 C
+            Step 3：將 n-1 個圓盤從 B 移到 C（透過 A）
+        */
+        private int moved = 0;
+
+        public int HanoiTower(int n, char fromPeg, char viaPeg, char toPeg)
         {
-            return 1;
+            if (n == 1)
+            {
+                Console.WriteLine($"Move disk from {fromPeg} to {toPeg}");
+                moved++;
+            }
+            else
+            {
+                // Step 1：將 n-1 個盤從 fromPeg 移到 viaPeg（使用 toPeg 作為中介）
+                HanoiTower(n - 1, fromPeg, toPeg, viaPeg);
+
+                // Step 2：將第 n 個盤從 fromPeg 移到 toPeg
+                HanoiTower(1, fromPeg, viaPeg, toPeg);
+
+                // Step 3：將 n-1 個盤從 viaPeg 移到 toPeg（使用 fromPeg 作為中介）
+                HanoiTower(n - 1, viaPeg, fromPeg, toPeg);
+            }
+
+            return moved;
         }
+
     }
 }
 
