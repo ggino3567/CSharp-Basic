@@ -1,5 +1,6 @@
 ﻿//Debug need Find Root Cause!
 //Formatter shortcut => Shift+Alt+F
+using System.Diagnostics;
 using Tools;
 
 namespace ConsoleAppForBasic
@@ -203,6 +204,35 @@ namespace ConsoleAppForBasic
     }
 
     //列舉 enum 預設public
+    /*
+    比如回傳驗證狀態用0~3，也可以自己指定某些值，跳過某些數字：
+    enum CheckStatus { 
+    Success = 200, 
+    InvalidPassword = 402, 
+    UserNotFound = 404, 
+    LockedOut = 405 
+    };
+
+    // 對應為：
+    Success = 0
+    InvalidPassword = 1
+    UserNotFound = 2
+    LockedOut = 3
+
+    if (ReturnValue == CheckStatus.Success) { ... }
+
+    搭配switch - case很好用:
+    switch (status)
+    {
+        case CheckStatus.Success:
+            // 處理登入成功
+            break;
+        case CheckStatus.InvalidPassword:
+            // 密碼錯誤處理
+            break;
+            // 其他狀態...
+    }
+     */
     enum Weekdays : int
     {
         Monday = 1,
