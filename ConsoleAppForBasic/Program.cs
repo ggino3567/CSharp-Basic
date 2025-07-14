@@ -4,18 +4,24 @@ using Tools;
 
 namespace ConsoleAppForBasic
 {
+    //public(共用成員) private(私有成員)
+    //internal class Name?
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            //CSharp中的數據類型
+            //C# 數據類型
+            /*
             int @int = 0;
             double @double = 4.0;
-            float @float = 3.0F; //很少用
             char @char = 'a'; //單引號
             string @string = "string"; //雙引號
             bool @bool_true = true;
             bool @bool_false = false;
+            float @float = 3.0F; //很少用
+            byte @byte = 1;
+            decimal @decimal = 10; //十進位?
+            */
 
             /*
              數據結構
@@ -25,15 +31,6 @@ namespace ConsoleAppForBasic
 
             //像是JS中的Array => 查詢、存放一堆資料
             List<string> orderList = new List<string> { "List1", "List2", "List3", "List4" };
-
-            //請注意! foreach 是唯讀操作，你不能在裡面「改動集合本身」，要修改內容只能使用for迴圈+索引
-            /*
-            foreach (var item in orderList)
-            {
-                Console.WriteLine($"List Foreach => {item}");
-            }
-             */
-
             //像是JS中的Map => 快速查 key 對應值（像狀態轉換、選單列表）
             Dictionary<int, string> memberList = new Dictionary<int, string>
             {
@@ -42,10 +39,11 @@ namespace ConsoleAppForBasic
                 {2, "Dictionary3" },
             };
 
+            //請注意! foreach 是唯讀操作，你不能在裡面「改動集合本身」，要修改內容只能使用for迴圈+索引
             /*
-            foreach (var Checker in MemberList)
+            foreach (var item in orderList)
             {
-                Console.WriteLine($"Dictionary Foreach => {Checker.Key + 1}\n{Checker.Value}");
+                Console.WriteLine($"List Foreach => {item}");
             }
              */
 
@@ -57,6 +55,68 @@ namespace ConsoleAppForBasic
             Stack<string> @stack = new Stack<string>(); //後進先出（像瀏覽器歷史紀錄）
             HashSet<string> @hashSet = new HashSet<string>(); //排除重複數值
 
+            //流程控制
+            int myAge = 17;
+            if (myAge <= 18 && myAge >= 30)
+            {
+                Console.WriteLine("你還算年輕?");
+            }
+            else if (myAge > 30)
+            {
+                Console.WriteLine("老很多ㄌ");
+            }
+            else
+            {
+                Console.WriteLine("乳臭未乾的屁孩");
+            }
+            //巢狀if-else
+            //其實就多層嵌套判斷
+            //可讀性下降
+            int a, b, c, max;
+            a = 10; b = 20; c = 30;
+            if (a > b)
+            {
+                if (a > c)
+                {
+                    max = a;
+                }
+                else
+                {
+                    max = c;
+                }
+            }
+            else
+            {
+                if (b > c)
+                {
+                    max = b;
+                }
+                else
+                {
+                    max = c;
+                }
+            }
+            Console.WriteLine($"Max = {max}");
+
+            //switchCase 與JS一樣
+            string myName = "蔡英文";
+            switch (myName)
+            {
+                case "Bean":
+                    Console.WriteLine(false);
+                    break;
+                case "Gino":
+                    Console.WriteLine(true);
+                    break;
+                default:
+                    Console.WriteLine("NOT INJECT VALUE");
+                    break;
+            }
+
+            //三元運算子 跟JS一樣
+            string getResult = a > b ? "a>b" : "b>a";
+            Console.WriteLine(getResult);
+
             /*
             for (int i = 0; i < orderList.Count; i++)
             {
@@ -64,12 +124,59 @@ namespace ConsoleAppForBasic
             }
              */
 
+            int whileParameter = 10;
+            Console.WriteLine($"初始狀態: {whileParameter}");
+            while (true)
+            {
+                if (whileParameter < 15)
+                {
+                    whileParameter++;
+                }
+                else
+                {
+                    Console.WriteLine($"whileParameter已經達到15!");
+                    break;
+                }
+            }
+            Console.WriteLine($"初始狀態: {whileParameter}");
+
+            //後測迴圈 do-while
+            //若第一次進入迴圈時不需要檢查是否滿足條件 直接進入迴圈將代碼先執行一遍 第二次才需要檢查是否滿足條件
+            /*
+            string optionResult = "";
+            int score, sum, count;
+            score = 0; sum = 0; count = 0;
+            Console.WriteLine("=== 程式設計成績試算 ===");
+            do //無論如何都將先執行一次
+            {
+                count += 1;
+                Console.Write($"{count}. 請輸入第{count}位同學的成績 : ");
+                score = int.Parse(Console.ReadLine());
+                sum += score;
+                Console.WriteLine("=== 是否繼續? (Y/N) : ");
+                optionResult = Console.ReadLine();
+            }
+            while (optionResult == "Y" || optionResult == "y"); //第一次執行後若輸入Y/y的條件達成則繼續執行上述流程否則跳出迴圈
+
+            Console.WriteLine($"共輸入了{count}位學生的成績, 學生成績總和為: {sum / count}");
+             */
+
+            //測試break和continue
+            //Requirement: 輸入下列條件式的臨界值(限正整數)，由電腦求終值，再計算出總和
+            int upperValue;
+            int count = 0;
+            int sum = 0;
+            Console.WriteLine("== 求 1+2+3...+N <= Upper(臨界值)");
+            Console.Write("請輸入 Upper(臨界值) : ");
+            upperValue = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                //...break or continue
+            }
+
             /*
             double getSum = Calculator.Add(1.5, 2.0);
-            getSum = Calculator.Sub(1.5, 2.0);
-            getSum = Calculator.Mul(1.5, 2.0);
-            getSum = Calculator.Div(1.5, 0);
-            Console.WriteLine($"Div: {getSum}");
+            Console.WriteLine($"{getSum}");
              */
 
             /*
@@ -79,14 +186,40 @@ namespace ConsoleAppForBasic
 
             Counter counter = new Counter();
             //counter.PrintSum(2, 3); //void method
-            //counter.PrintXToOne(3);
-            //counter.PrintOneAddToAHandred();
             //int result = counter.SumFromOneToX(3);
-            //int newResult = counter.SumFromOneToXX(3);
-
+            /* 河內塔
             int hanoiCounter = counter.HanoiTower(3, 'A', 'B', 'C'); //2^3-1 => hanoiCounter = 7
-            Console.WriteLine($"HanoiTower Run Time: {hanoiCounter}");
+            Console.WriteLine($"河內塔走了幾次: {hanoiCounter}");
+            */
+
+            //Console.WriteLine($"{(int)Weekdays.Monday}");
+            Product cpu;
+            cpu.number = "pc01";
+            cpu.name = "i3-1215u";
+            //Console.Write("請輸入cpu價格: ");
+            cpu.price = 2500;
+            //Console.WriteLine($"產品編號:{cpu.number}\n產品名稱:{cpu.name}\n產品單價:{cpu.price}");
         }
+    }
+
+    //列舉 enum 預設public
+    enum Weekdays : int
+    {
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 3,
+        Thursday = 4,
+        Friday = 5,
+        Saturday = 6,
+        Sunday = 7,
+    }
+
+    //結構 struct 預設private
+    //需先定義再宣告 很像小型class類別但只用來儲存不同類型的資料
+    struct Product
+    {
+        public string number, name;
+        public int price;
     }
 
     //Method
@@ -142,7 +275,7 @@ namespace ConsoleAppForBasic
             Console.WriteLine(sum);
         }
 
-        //遞歸
+        //遞迴
         public int GetGaussian(int x)
         {
             if (x == 1)
@@ -183,6 +316,8 @@ namespace ConsoleAppForBasic
 
         public int HanoiTower(int n, char fromPeg, char viaPeg, char toPeg)
         {
+            // 結束條件為當n = 1時跳出
+            // 過程如下
             if (n == 1)
             {
                 Console.WriteLine($"Move disk from {fromPeg} to {toPeg}");
