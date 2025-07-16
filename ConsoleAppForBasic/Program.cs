@@ -1,27 +1,29 @@
 ﻿//Debug need Find Root Cause!
 //Formatter shortcut => Shift+Alt+F
-using System.Diagnostics;
-using Tools;
+using Tools; //Calculator.Tools
 
 namespace ConsoleAppForBasic
 {
     //public(共用成員) private(私有成員)
     //internal class Name?
-    class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {
             //C# 數據類型
             /*
-            int @int = 0;
-            double @double = 4.0;
-            char @char = 'a'; //單引號
             string @string = "string"; //雙引號
+            byte @byte = 1;
+            char @char = 'a'; //單引號
+            int @int = -10;
+            uint @uint = 10;
+            long @long = -10L;
+            ulong @ulong = 10L; <超大，老師說用於ID都用不完>
+            double @double = 4.0;
+            float @float = 3.0F; //很少用
+            decimal @decimal = 10; //十進位?
             bool @bool_true = true;
             bool @bool_false = false;
-            float @float = 3.0F; //很少用
-            byte @byte = 1;
-            decimal @decimal = 10; //十進位?
             */
 
             /*
@@ -30,6 +32,8 @@ namespace ConsoleAppForBasic
              - 還有tuple等等
              */
 
+            int[] array = new int[2]; //宣告一個長度為2的陣列
+            int[] arrayMore = {1, 2, 3};
             //像是JS中的Array => 查詢、存放一堆資料
             List<string> orderList = new List<string> { "List1", "List2", "List3", "List4" };
             //像是JS中的Map => 快速查 key 對應值（像狀態轉換、選單列表）
@@ -200,6 +204,7 @@ namespace ConsoleAppForBasic
             //Console.Write("請輸入cpu價格: ");
             cpu.price = 2500;
             //Console.WriteLine($"產品編號:{cpu.number}\n產品名稱:{cpu.name}\n產品單價:{cpu.price}");
+
         }
     }
 
