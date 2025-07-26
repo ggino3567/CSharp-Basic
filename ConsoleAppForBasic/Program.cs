@@ -10,38 +10,44 @@ namespace ConsoleAppForBasic
     {
         public static void Main(string[] args)
         {
-            //C# 數據類型
-            /*
-            string @string = "string"; //雙引號
-            byte @byte = 1;
-            char @char = 'a'; //單引號
-            int @int = -10;
-            uint @uint = 10;
-            long @long = -10L;
-            ulong @ulong = 10L; <超大，老師說用於ID都用不完>
-            double @double = 4.0;
-            float @float = 3.0F; //很少用
-            decimal @decimal = 10; //十進位?
-            bool @bool_true = true;
-            bool @bool_false = false;
+            /*C# 數據類型
+             *字串:
+             *=> string @string = "string"; //雙引號
+             *字符:
+             *=> char @char = 'a'; //單引號
+             *整數:
+             *=> byte @byte = 1;
+             *=> int @int = -10;
+             *=> uint @uint = 10;
+             *=> long @long = -10L;
+             *=> ulong @ulong = 10L; <超大，老師說用於ID都用不完>
+             *浮點數:
+             *=> double @double = 4.0;
+             *=> decimal @decimal = 10; //精確浮點數
+             *=> float @float = 3.0F; //很少用
+             *布林值:
+             *=> bool @bool_true = true;
+             *=> bool @bool_false = false;
             */
 
-            /*
-             數據結構
-             - 通常都用下列兩種較多
-             - 還有tuple等等
+            /*數據結構
+             * 常用:
+             * Array[] & List<t>[] & Dictionary<TK, TV> {{K, V}}
+             * 其餘:
+             * ArrayList[] & Tuple[]
              */
 
-            int[] array = new int[2]; //宣告一個長度為2的陣列
+            int[] array = new int[2]; //宣告長度為2的陣列
             int[] arrayMore = {1, 2, 3};
-            //像是JS中的Array => 查詢、存放一堆資料
+
+            //Array 動態長度
             List<string> orderList = new List<string> { "List1", "List2", "List3", "List4" };
-            //像是JS中的Map => 快速查 key 對應值（像狀態轉換、選單列表）
+            
+            //HashTable 無序
             Dictionary<int, string> memberList = new Dictionary<int, string>
             {
-                {0, "Dictionary1" },
-                {1, "Dictionary2" },
-                {2, "Dictionary3" },
+                {100, "Dictionary" },
+                {29, "Example" },
             };
 
             //請注意! foreach 是唯讀操作，你不能在裡面「改動集合本身」，要修改內容只能使用for迴圈+索引
@@ -51,9 +57,6 @@ namespace ConsoleAppForBasic
                 Console.WriteLine($"List Foreach => {item}");
             }
              */
-
-            //宣告MemberProfile<string> - MemberList[0] => "陳奕迅"]
-            string memberProfile = memberList[0];
 
             //下列大概了解即可
             Queue<string> @oueue = new Queue<string>(); //先進先出（排隊系統）
